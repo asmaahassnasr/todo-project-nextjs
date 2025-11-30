@@ -15,27 +15,3 @@ model Todo {
   completed Boolean @default(false)
   createdAt DateTime @default(now())
 }
-
-model Post {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String   @db.ObjectId
-  author    User     @relation(fields: [authorId], references: [id])
-}
-
-model User {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  email String @unique
-  name  String?
-  address Address?
-  posts Post[]
-}
-
-type Address{
-  street String
-  city String
-  state String
-  zipCode String
-}
