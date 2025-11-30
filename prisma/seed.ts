@@ -1,4 +1,3 @@
-import { title } from 'node:process'
 import { PrismaClient } from '../generated/prisma/client'
 import {faker} from '@faker-js/faker'
 
