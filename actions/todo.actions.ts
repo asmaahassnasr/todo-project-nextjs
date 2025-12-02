@@ -9,10 +9,12 @@ export const getTodoAction = async () => {
     return await prisma.todo.findMany();
 }
 export const createTodoAction = async (params:TodoFormValues) => {
-    const {title,body} = params;
+    const {title,body, completed} = params;
     return await prisma.todo.create({
         data:{
-            title,body
+            title,
+            body,
+            completed
         }
     })
 }

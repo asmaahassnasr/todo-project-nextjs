@@ -18,11 +18,13 @@ import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { todoFormSchema, TodoFormValues } from "@/shema";
 import { createTodoAction } from "@/actions/todo.actions";
+import { Checkbox } from "./ui/checkbox";
 
 const AddTodoForm = () => {
   const defaultValues: Partial<TodoFormValues> = {
-    title: "DEFAULT TITLE",
-    body: "DEFAULT BODY",
+    title: "",
+    body: "",
+    completed:false,
   };
 
   // const todos = await getTodoListAction();
@@ -80,6 +82,21 @@ const AddTodoForm = () => {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="completed"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                    </FormControl>
+                    <FormLabel>Completed</FormLabel>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
           <Button type="submit">Save changes</Button>
             </form>
           </Form>
