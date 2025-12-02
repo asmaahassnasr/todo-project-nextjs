@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { todoFormSchema, TodoFormValues } from "@/shema";
+import { createTodoAction } from "@/actions/todo.actions";
 
 const AddTodoForm = () => {
   const defaultValues: Partial<TodoFormValues> = {
@@ -32,7 +33,7 @@ const AddTodoForm = () => {
   });
 
   const onSubmit = (data:TodoFormValues) => {
-    console.log(data)
+    createTodoAction(data)
   };
 
   return (
