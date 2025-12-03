@@ -19,8 +19,13 @@ import { Textarea } from "./ui/textarea";
 import { todoFormSchema, TodoFormValues } from "@/shema";
 import { createTodoAction } from "@/actions/todo.actions";
 import { Checkbox } from "./ui/checkbox";
+import { useState } from "react";
+import Spinner from "./spinner";
 
 const AddTodoForm = () => {
+    const[loading , setLoading] = useState(false)
+    const[open , setOpen] = useState(false)
+  
   const defaultValues: Partial<TodoFormValues> = {
     title: "",
     body: "",
@@ -34,12 +39,16 @@ const AddTodoForm = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (data:TodoFormValues) => {
-    createTodoAction(data)
+  const onSubmit =async (data:TodoFormValues) => {
+    setLoading(true)
+    await createTodoAction(data)
+    setLoading(false)
+    setOpen(false)
+
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="mb-3">
           <Plus size={14} className="mr-1" />
@@ -97,7 +106,9 @@ const AddTodoForm = () => {
                 )}
               />
 
-          <Button type="submit">Save changes</Button>
+          <Button type="submit" disabled={loading}>
+            {loading? <> <Spinner /> Saving </> : "Save"}
+          </Button>
             </form>
           </Form>
         </div>
