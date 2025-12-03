@@ -20,6 +20,7 @@ import { Checkbox } from "./ui/checkbox";
 import { useState } from "react";
 import Spinner from "./spinner";
 import { ITodo } from "@/interfaces";
+import { updateTodoAction } from "@/actions/todo.actions";
 
 const EditTodoForm = ({todo}:{todo:ITodo}) => {
     const[loading , setLoading] = useState(false)
@@ -40,7 +41,7 @@ const EditTodoForm = ({todo}:{todo:ITodo}) => {
 
   const onSubmit =async (data:TodoFormValues) => {
     setLoading(true)
-    // Update Todo Action Here 
+    await updateTodoAction({id:todo.id, title:data.title, body:data.body as string, completed:data.completed})
     setLoading(false)
     setOpen(false)
 

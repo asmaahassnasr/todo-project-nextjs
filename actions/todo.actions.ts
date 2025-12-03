@@ -3,6 +3,7 @@ import { TodoFormValues} from "@/shema";
 
 import { PrismaClient } from '../generated/prisma/client'
 import { revalidatePath } from "next/cache";
+import { ITodo } from "@/interfaces";
 
 const prisma = new PrismaClient()
 
@@ -25,7 +26,19 @@ export const createTodoAction = async (params:TodoFormValues) => {
     revalidatePath("/")
 
 }
-export const updateTodoAction = async () => {}
+export const updateTodoAction = async ({id,title,body,completed}:ITodo) => {
+    await prisma.todo.update({
+        where:{
+            id
+        },
+        data:{
+            title,
+            body,
+            completed
+        }
+    })
+    revalidatePath("/")
+}
 export const deleteTodoAction = async ({id}:{id:string}) => {
      await prisma.todo.delete({
         where:{
