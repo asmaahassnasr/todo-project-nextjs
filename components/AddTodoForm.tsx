@@ -97,10 +97,15 @@ const AddTodoForm = () => {
                 name="completed"
                 render={({ field }) => (
                   <FormItem>
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <FormLabel>Completed</FormLabel>
+                    <div className="flex items-center space-x-2">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                      </FormControl>
+                      <FormLabel>Completed</FormLabel>
+                    </div>
+                    <FormDescription>
+                      Your to-do item will be uncompleted by default unless you checked it.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
