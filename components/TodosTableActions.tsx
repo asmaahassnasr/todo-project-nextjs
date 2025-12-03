@@ -15,11 +15,11 @@ const TodosTableActions = ({id}:{id:string}) => {
 
   return (
     <>
-      <Button size={"icon"}>
+      <Button size={"icon"} className="cursor-pointer">
         <Pen size={16} />
       </Button>
       <Button
-        size={"icon"}
+        size={"icon"} className="cursor-pointer"
         variant={"destructive"}
         onClick={async () => {
           setLoading(true);

@@ -50,7 +50,7 @@ const AddTodoForm = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="mb-3">
+        <Button className="mb-3 cursor-pointer">
           <Plus size={14} className="mr-1" />
           New Todo
         </Button>
@@ -106,7 +106,7 @@ const AddTodoForm = () => {
                 )}
               />
 
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" className="cursor-pointer" disabled={loading}>
             {loading? <> <Spinner /> Saving </> : "Save"}
           </Button>
             </form>
