@@ -41,7 +41,7 @@ const AddTodoForm = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>
+        <Button className="mb-3">
           <Plus size={14} className="mr-1" />
           New Todo
         </Button>

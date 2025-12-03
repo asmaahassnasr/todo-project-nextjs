@@ -1,17 +1,14 @@
 import { getTodoAction } from "@/actions/todo.actions";
 import AddTodoForm from "@/components/AddTodoForm";
+import TodosTable from "@/components/TodoTable";
 
 export default async function Home() {
 
 const todos = await getTodoAction();
   return (
-    <main>
-      
-      {/* <ul>
-        {todos.map(ele => <li key={ele.id}>{ele.title}</li>)}
-      </ul> */}
-
+    <main className="container p-3">
       <AddTodoForm />
+      <TodosTable todos={todos}/>
     </main>
   );
 }
