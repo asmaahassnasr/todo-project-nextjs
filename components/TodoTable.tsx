@@ -1,10 +1,4 @@
-"use client";
 import * as React from "react";
-import {
-  Pen,
-  Trash,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -15,9 +9,10 @@ import {
 } from "@/components/ui/table";
 import { ITodo } from "@/interfaces";
 import { Badge } from "./ui/badge";
+import TodosTableActions from "./TodosTableActions";
 
 export default function TodosTable({todos}:{todos:ITodo[]}) {
-  
+
   return (
     <div className="w-full">
       <div className="overflow-hidden rounded-md border">
@@ -37,12 +32,7 @@ export default function TodosTable({todos}:{todos:ITodo[]}) {
               <TableCell>{todo.title}</TableCell>
               <TableCell>{todo.completed? <Badge>Completed</Badge> : <Badge variant={"secondary"}>InCompleted </Badge>}</TableCell>
               <TableCell className="flex items-center justify-end space-x-2">
-                <Button size={"icon"}>
-                  <Pen size={16} />
-                </Button>
-                <Button size={"icon"} variant={"destructive"}>
-                  <Trash size={16} />
-                </Button>
+                <TodosTableActions id={todo.id}/>
               </TableCell>
             </TableRow>
             ))}
