@@ -32,7 +32,7 @@ export default function TodosTable({todos}:{todos:ITodo[]}) {
               <TableCell>{todo.title}</TableCell>
               <TableCell>{todo.completed? <Badge>Completed</Badge> : <Badge variant={"secondary"}>InCompleted </Badge>}</TableCell>
               <TableCell className="flex items-center justify-end space-x-2">
-                <TodosTableActions id={todo.id}/>
+                <TodosTableActions todo={todo}/>
               </TableCell>
             </TableRow>
             ))}

@@ -11,24 +11,24 @@ import {
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
+import { Pen } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { todoFormSchema, TodoFormValues } from "@/shema";
-import { createTodoAction } from "@/actions/todo.actions";
 import { Checkbox } from "./ui/checkbox";
 import { useState } from "react";
 import Spinner from "./spinner";
+import { ITodo } from "@/interfaces";
 
-const AddTodoForm = () => {
+const EditTodoForm = ({todo}:{todo:ITodo}) => {
     const[loading , setLoading] = useState(false)
     const[open , setOpen] = useState(false)
   
   const defaultValues: Partial<TodoFormValues> = {
-    title: "",
-    body: "",
-    completed:false,
+    title: todo.title,
+    body: todo.body as string,
+    completed:todo.completed,
   };
 
   // const todos = await getTodoListAction();
@@ -40,7 +40,7 @@ const AddTodoForm = () => {
 
   const onSubmit =async (data:TodoFormValues) => {
     setLoading(true)
-    await createTodoAction(data)
+    // Update Todo Action Here 
     setLoading(false)
     setOpen(false)
 
@@ -50,14 +50,13 @@ const AddTodoForm = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="mb-3 cursor-pointer">
-          <Plus size={14} className="mr-1" />
-          New Todo
+          <Pen size={16} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add New Todo</DialogTitle>
-          <DialogDescription>Create new Todo here. Click save when you&apos;re done.</DialogDescription>
+          <DialogTitle>Edit Todo</DialogTitle>
+          <DialogDescription>Make changes to your todo here. Click save when you&apos;re done.</DialogDescription>
         </DialogHeader>
         <div className="py-4">
           <Form {...form}>
@@ -121,4 +120,4 @@ const AddTodoForm = () => {
   );
 };
 
-export default AddTodoForm;
+export default EditTodoForm;
