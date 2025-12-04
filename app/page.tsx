@@ -11,8 +11,10 @@ const todos = await getTodoAction({userId});
 
   return (
     <main className="container p-3">
+      <div className="mx-auto flex w-full lg:w-3/4 flex-col justify-center space-y-4 mt-10">
       <AddTodoForm userId={userId}/>
       <TodosTable todos={todos}/>
+      </div>
     </main>
   );
 }
