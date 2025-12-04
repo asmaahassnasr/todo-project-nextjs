@@ -29,7 +29,7 @@ export default function TodosTable({todos}:{todos:ITodo[]}) {
             {todos.map(todo => (
               <TableRow key={todo.id}>
               <TableCell>{todo.id} </TableCell>
-              <TableCell>{todo.title}</TableCell>
+              <TableCell className={todo.completed ? "line-through" : ""}>{todo.title}</TableCell>
               <TableCell>{todo.completed? <Badge>Completed</Badge> : <Badge variant={"secondary"}>InCompleted </Badge>}</TableCell>
               <TableCell className="flex items-center justify-end space-x-2">
                 <TodosTableActions todo={todo}/>
