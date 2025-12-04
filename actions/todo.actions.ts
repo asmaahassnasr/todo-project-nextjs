@@ -7,20 +7,24 @@ import { ITodo } from "@/interfaces";
 
 const prisma = new PrismaClient()
 
-export const getTodoAction = async () => {
+export const getTodoAction = async ({userId}:{userId:string|null}) => {
     return await prisma.todo.findMany({
+        where:{
+            user_id:userId as string,
+        },
         orderBy:{
-            createdAt:"desc"
+            createdAt:"desc",
         }
     });
 }
-export const createTodoAction = async (params:TodoFormValues) => {
+export const createTodoAction = async (params:TodoFormValues , userId:string | null) => {
     const {title,body, completed} = params;
      await prisma.todo.create({
         data:{
             title,
             body,
-            completed
+            completed,
+            user_id:userId as string,
         }
     })
     revalidatePath("/")
