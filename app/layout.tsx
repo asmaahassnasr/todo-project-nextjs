@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import {
-  ClerkProvider
+  ClerkProvider,
+  RedirectToSignIn,
+  SignedOut
 } from '@clerk/nextjs'
 import Nav from "@/components/Nav";
 const geistSans = Geist({
@@ -28,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignInUrl="/" afterSignUpUrl="/">
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -41,6 +43,9 @@ export default function RootLayout({
           >
               <Nav />
             {children}
+            <SignedOut>
+              <RedirectToSignIn redirectUrl="/sign-in" />
+            </SignedOut>
           </ThemeProvider>
       </body>
     </html>
